@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  table_id: 1
+  name: MyString
+  type_id: 1
+  not_null: false
+  unique: false
+  unit: MyString
+  default_value: MyString
+
+two:
+  table_id: 1
+  name: MyString
+  type_id: 1
+  not_null: false
+  unique: false
+  unit: MyString
+  default_value: MyString

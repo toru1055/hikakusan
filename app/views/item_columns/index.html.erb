@@ -1,0 +1,33 @@
+<h1>Listing item_columns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Table</th>
+      <th>Item</th>
+      <th>Column</th>
+      <th>Value</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @item_columns.each do |item_column| %>
+      <tr>
+        <td><%= item_column.table_id %></td>
+        <td><%= item_column.item_id %></td>
+        <td><%= item_column.column_id %></td>
+        <td><%= item_column.value %></td>
+        <td><%= link_to 'Show', item_column %></td>
+        <td><%= link_to 'Edit', edit_item_column_path(item_column) %></td>
+        <td><%= link_to 'Destroy', item_column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item column', new_item_column_path %>

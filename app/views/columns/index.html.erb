@@ -1,0 +1,39 @@
+<h1>Listing columns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Table</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Not null</th>
+      <th>Unique</th>
+      <th>Unit</th>
+      <th>Default value</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @columns.each do |column| %>
+      <tr>
+        <td><%= column.table_id %></td>
+        <td><%= column.name %></td>
+        <td><%= column.type_id %></td>
+        <td><%= column.not_null %></td>
+        <td><%= column.unique %></td>
+        <td><%= column.unit %></td>
+        <td><%= column.default_value %></td>
+        <td><%= link_to 'Show', column %></td>
+        <td><%= link_to 'Edit', edit_column_path(column) %></td>
+        <td><%= link_to 'Destroy', column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Column', new_column_path %>

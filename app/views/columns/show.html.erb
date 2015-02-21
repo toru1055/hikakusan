@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @column.table_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @column.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @column.type_id %>
+</p>
+
+<p>
+  <strong>Not null:</strong>
+  <%= @column.not_null %>
+</p>
+
+<p>
+  <strong>Unique:</strong>
+  <%= @column.unique %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @column.unit %>
+</p>
+
+<p>
+  <strong>Default value:</strong>
+  <%= @column.default_value %>
+</p>
+
+<%= link_to 'Edit', edit_column_path(@column) %> |
+<%= link_to 'Back', columns_path %>
