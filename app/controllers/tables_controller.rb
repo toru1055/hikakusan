@@ -13,7 +13,9 @@ class TablesController < ApplicationController
     @columns = @table.columns
     @item_columns = Hash.new
     @table.item_columns.each do |ic|
-      @item_columns[ic.item_id] = Hash.new
+      unless @item_columns[ic.item_id]
+        @item_columns[ic.item_id] = Hash.new
+      end
       @item_columns[ic.item_id][ic.column_id] = ic.value
     end
   end
@@ -77,6 +79,7 @@ class TablesController < ApplicationController
 
   def add_item_complete
     @item = Item.new
+    @item.table_id = params[:item][:table_id]
     @item.name = params[:item][:name]
     @item.save
     @table.columns.each do |column|
@@ -86,7 +89,7 @@ class TablesController < ApplicationController
                         :column_id => column.id,
                         :value => value)
     end
-    render :text => params[:column].to_json
+    render :text => params[:item].to_json
   end
 
   private

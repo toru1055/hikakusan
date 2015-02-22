@@ -4,7 +4,7 @@
 
 <%= form_tag(add_item_complete_table_path(@table)) do %>
   アイテム名：<%= text_field(:item, :name) %></br>
-  <%= hidden_field :item, :table_id %>
+  <%= hidden_field_tag 'item[table_id]', "#{@table.id}" %>
   <% @table.columns.each do |column| %>
     <%= column.name %>: 
     <%= text_field(:column, "#{column.id}") %>

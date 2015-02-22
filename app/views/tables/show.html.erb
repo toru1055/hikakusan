@@ -10,6 +10,7 @@
   <% @columns.each do |column| %>
     <th>
       <%= column.name %>
+      (<%= column.unit %>)
     </th>
   <% end %>
   <% @table.items.each do |item| %>
