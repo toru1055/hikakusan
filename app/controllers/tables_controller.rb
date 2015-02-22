@@ -1,5 +1,5 @@
 class TablesController < ApplicationController
-  before_action :set_table, only: [:show, :edit, :update, :destroy]
+  before_action :set_table, only: [:show, :edit, :update, :destroy, :add_item, :add_item_complete]
 
   # GET /tables
   # GET /tables.json
@@ -10,6 +10,12 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
+    @columns = @table.columns
+    @item_columns = Hash.new
+    @table.item_columns.each do |ic|
+      @item_columns[ic.item_id] = Hash.new
+      @item_columns[ic.item_id][ic.column_id] = ic.value
+    end
   end
 
   # GET /tables/new
@@ -59,6 +65,28 @@ class TablesController < ApplicationController
       format.html { redirect_to tables_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_column
+    @column = Column.new
+    @column.table_id = params[:id]
+  end
+
+  def add_item
+  end
+
+  def add_item_complete
+    @item = Item.new
+    @item.name = params[:item][:name]
+    @item.save
+    @table.columns.each do |column|
+      value = params[:column][column.id.to_s]
+      ItemColumn.create(:table_id => @table.id,
+                        :item_id => @item.id,
+                        :column_id => column.id,
+                        :value => value)
+    end
+    render :text => params[:column].to_json
   end
 
   private

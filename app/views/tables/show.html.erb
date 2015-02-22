@@ -1,9 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @table.name %>
+<strong>Name:</strong>
+<%= @table.name %>
 </p>
 
-<%= link_to 'Edit', edit_table_path(@table) %> |
+<p>
+<table border="1">
+  <% @columns.each do |column| %>
+    <th>
+      <%= column.name %>
+    </th>
+  <% end %>
+  <% @table.items.each do |item| %>
+    <tr>
+    <% @columns.each do |column| %>
+      <td>
+        <%= @item_columns[item.id][column.id] %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+</p>
+
+<%= link_to 'Add Column', add_column_table_path(@table) %>
+<%= link_to 'Add Item', add_item_table_path(@table) %>
+<%= link_to 'Edit', edit_table_path(@table) %> 
 <%= link_to 'Back', tables_path %>

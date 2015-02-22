@@ -7,7 +7,13 @@ Hikakusan::Application.routes.draw do
 
   resources :items
 
-  resources :tables
+  resources :tables do
+    member do
+      get 'add_column'
+      get 'add_item'
+      post 'add_item_complete'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
