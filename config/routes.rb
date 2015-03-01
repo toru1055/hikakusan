@@ -5,7 +5,11 @@ Hikakusan::Application.routes.draw do
 
   resources :columns
 
-  resources :items
+  resources :items do
+    member do
+      post 'edit_complete'
+    end
+  end
 
   resources :tables do
     member do

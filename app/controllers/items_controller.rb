@@ -1,5 +1,7 @@
+require 'ostruct'
+
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_complete]
 
   # GET /items
   # GET /items.json
@@ -19,6 +21,28 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @table = @item.table
+    column_hash = Hash.new
+    @item.item_columns.each do |ic|
+      column_hash["#{ic.column_id}"] = ic.value
+    end
+    @column = OpenStruct.new column_hash
+  end
+
+  def edit_complete
+    @item.name = params[:item][:name]
+    @item.save
+    table = @item.table
+    table.columns.each do |column|
+      value = params[:column][column.id.to_s]
+      ic = ItemColumn.where(["table_id = ? and item_id = ? and column_id = ?",
+                            table.id,
+                            @item.id,
+                            column.id]).first
+      ic.value = value
+      ic.save
+    end
+    redirect_to table
   end
 
   # POST /items

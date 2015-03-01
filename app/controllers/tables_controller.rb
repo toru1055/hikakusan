@@ -89,7 +89,7 @@ class TablesController < ApplicationController
                         :column_id => column.id,
                         :value => value)
     end
-    render :text => params[:item].to_json
+    redirect_to @table
   end
 
   private
@@ -100,6 +100,6 @@ class TablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
-      params.require(:table).permit(:name)
+      params.require(:table).permit(:name, :key_column_name)
     end
 end

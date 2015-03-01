@@ -1,6 +1,16 @@
 <h1>Editing item</h1>
 
-<%= render 'form' %>
+<%= form_tag(edit_complete_item_path(@item)) do %>
+  <%= @table.key_column_name %>: 
+  <%= text_field(:item, :name) %></br>
+  <%= hidden_field_tag 'item[table_id]', "#{@table.id}" %>
+  <% @table.columns.each do |column| %>
+    <%= column.name %>: 
+    <%= text_field(:column, "#{column.id}") %>
+    <br>
+  <% end %>
+  <%= submit_tag %>
+<% end %>
 
 <%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', tables_path %>

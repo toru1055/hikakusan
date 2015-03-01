@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221094258) do
+ActiveRecord::Schema.define(version: 20150301025234) do
 
   create_table "columns", force: true do |t|
     t.integer  "table_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150221094258) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "key_column_name"
   end
 
   create_table "types", force: true do |t|

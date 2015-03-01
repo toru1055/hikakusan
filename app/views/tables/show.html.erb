@@ -7,20 +7,25 @@
 
 <p>
 <table border="1">
+  <th>
+    <%= @table.key_column_name %>
+  </th>
   <% @columns.each do |column| %>
     <th>
-      <%= column.name %>
-      (<%= column.unit %>)
+      <%= link_to column.name, edit_column_path(column) %>
     </th>
   <% end %>
   <% @table.items.each do |item| %>
     <tr>
-    <% @columns.each do |column| %>
       <td>
-        <%= @item_columns[item.id][column.id] %>
+        <%= link_to item.name, edit_item_path(item) %>
       </td>
-    <% end %>
-  </tr>
+      <% @columns.each do |column| %>
+        <td>
+          <%= @item_columns[item.id][column.id] %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
 </p>
