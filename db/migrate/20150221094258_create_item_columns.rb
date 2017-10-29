@@ -1,4 +1,4 @@
-class CreateItemColumns < ActiveRecord::Migration
+class CreateItemColumns < ActiveRecord::Migration[5.1]
   def change
     create_table :item_columns do |t|
       t.integer :table_id
